@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cara's Art Works</title>
+    <style>
+        .carousel {
+            display: none;
+            width: 100%;
+        }
+        .carousel img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cara's Art Works</h1>
+    <button onclick="plusDivs(-1)">Previous</button>
+    <button onclick="plusDivs(1)">Next</button>
+    <div id="gallery">      
+    </div>
+
+    <script>
+        var index = 0;
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("carousel");
+            if (n > x.length) {index = 1}
+            if (n < 1) {index = x.length}
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";  
+            }
+            x[index-1].style.display = "block";  
+        }
+
+        function plusDivs(n) {
+            showDivs(index += n);
+        }
+
+        showDivs(1); // Show the first image
+    </script>
+</body>
+</html>

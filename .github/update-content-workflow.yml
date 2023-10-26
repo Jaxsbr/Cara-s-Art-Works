@@ -1,0 +1,26 @@
+name: Update Gallery
+on:
+  push:
+    paths-ignore:
+      - 'index.html'
+jobs:
+  update_gallery:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Update gallery
+        run: |
+          echo "Updating gallery..."
+          echo "<div id=\"gallery\">" >> index.html # start gallery div
+          for filename in images/*; do
+            echo "<div class=\"carousel\"><img src=\"$filename\" alt=\"Artwork\"></div>" >> index.html # replace with your HTML filename
+          done
+          echo "</div>" >> index.html # end gallery div
+      - name: Commit and push if it changed 
+        run: |
+          git diff
+          git config --global user.email "19993683+Jaxsbr@users.noreply.github.com"
+          git config --global user.name "Jaxsbr"
+          git commit -am "Update gallery" || exit 0 
+          git push
