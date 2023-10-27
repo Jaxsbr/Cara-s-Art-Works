@@ -15,7 +15,8 @@ jobs:
           # build up the gallery content in a variable
           gallery=""
           for filename in images/*; do
-            gallery+="<div class=\"carousel\"><h2>$filename</h2><img src=\"$filename\" alt=\"Artwork\"></div>"
+            file_name_only=$(basename "$filename" | sed 's/\.[^.]*$//')
+            gallery+="<div class=\"carousel\"><h2>$file_name_only</h2><img src=\"$filename\" alt=\"Artwork\"></div>"
           done
           # read the html template file content into a variable
           template=$(cat template.html)
