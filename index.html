@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cara's Art Works</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Cara's Art Works</h1>
+    <button onclick="plusDivs(-1)">Previous</button>
+    <button onclick="plusDivs(1)">Next</button>
+    <div id="gallery"><div class="carousel"><img src="images/Birthday Crown For Adam.jpg" alt="Artwork"></div><div class="carousel"><img src="images/Box Hideout.jpg" alt="Artwork"></div><div class="carousel"><img src="images/Diy Crown.jpg" alt="Artwork"></div><div class="carousel"><img src="images/Easter Bunny.jpg" alt="Artwork"></div><div class="carousel"><img src="images/Sticky Block Mansion.jpg" alt="Artwork"></div><div class="carousel"><img src="images/Sticky Block Towers And Animal Courtyard.jpg" alt="Artwork"></div></div>
+    <script>
+        var index = 0;
+        function showDivs(n) {
+            var i;
+            var x = document.getElementsByClassName("carousel");
+            if (n > x.length) {index = 1}
+            if (n < 1) {index = x.length}
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";  
+            }
+            x[index-1].style.display = "block";  
+        }
+
+        function plusDivs(n) {
+            showDivs(index += n);
+        }
+
+        showDivs(1);
+    </script>
+</body>
+</html>
