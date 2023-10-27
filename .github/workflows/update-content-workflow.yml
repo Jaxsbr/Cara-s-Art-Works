@@ -12,11 +12,17 @@ jobs:
       - name: Update gallery
         run: |
           echo "Updating gallery..."
-          echo "<div id=\"gallery\">" >> index.html # start gallery div
-          for filename in images/*; do
-            echo "<div class=\"carousel\"><h2>$filename</h2><img src=\"$filename\" alt=\"Artwork\"></div>" >> index.html # replace with your HTML filename
+          # build up the gallery content in a variable
+          gallery=""
+          for filename in images/*;
+            gallery+="<div class=\"carousel\"><img src=\"$filename\" alt=\"Artwork\"></div>"
           done
-          echo "</div>" >> index.html # end gallery div
+          # read the html template file content into a variable
+          template=$(cat template.html)
+          # replace the placeholder in the template with the gallery content
+          html=${template//PLACEHOLDER/$gallery}
+          # write the result to the index.html file
+          echo "$html" > index.html
       - name: Commit and push if it changed 
         run: |
           git diff
